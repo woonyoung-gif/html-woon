@@ -1,77 +1,292 @@
 <!DOCTYPE html>
 <html lang="ko">
 
-
 <head>
     <meta charset="UTF-8">
-    <title>HTML Intro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>즐거운 학교 생활</title>
+    <style>
+        /* Global Styles */
+        @import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@400;700&display=swap');
+
+        :root {
+            --primary-color: #FF6B6B;
+            /* Soft Red */
+            --secondary-color: #4ECDC4;
+            /* Teal */
+            --accent-color: #FFE66D;
+            /* Yellow */
+            --text-color: #2D3436;
+            --bg-color: #F7F9FC;
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.5);
+            --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: var(--bg-color);
+            background-image:
+                radial-gradient(at 10% 10%, hsla(253, 16%, 7%, 1) 0, transparent 50%),
+                radial-gradient(at 50% 0%, hsla(225, 39%, 30%, 1) 0, transparent 50%),
+                radial-gradient(at 100% 0%, hsla(339, 49%, 30%, 1) 0, transparent 50%);
+            background-image: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=2022&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Glassmorphism Container */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 2rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow);
+            flex: 1;
+        }
+
+        /* Header / Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            text-align: left;
+            padding: 1rem 3rem;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 20px;
+        }
+
+        .mascot {
+            width: 180px;
+            height: 180px;
+            object-fit: contain;
+            animation: float 4s ease-in-out infinite;
+            filter: drop-shadow(0 10px 15px rgba(100, 100, 255, 0.3));
+        }
+
+        .hero-text h1 {
+            font-family: 'Jua', sans-serif;
+            color: var(--primary-color);
+            font-size: 3rem;
+            text-shadow: 2px 2px 0px #fff;
+            margin-bottom: 0.2rem;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .hero-text .subtitle {
+            font-size: 1.1rem;
+            color: #555;
+            font-weight: bold;
+        }
+
+        /* Navigation Grid - 2x2 Layout */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            padding: 1rem 4rem;
+        }
+
+        /* Menu Items - Adjusted for 'At a Glance' */
+        .menu-item {
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 20px;
+            padding: 1.5rem;
+            text-align: center;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 2px solid transparent;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 160px;
+            /* Reduced height */
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+            border-color: var(--secondary-color);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .menu-icon {
+            font-size: 2.5rem;
+            /* Slightly smaller icon */
+            margin-bottom: 0.8rem;
+            transition: transform 0.3s;
+        }
+
+        .menu-item:hover .menu-icon {
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        .menu-title {
+            font-family: 'Jua', sans-serif;
+            font-size: 1.4rem;
+            color: var(--text-color);
+        }
+
+        /* Specific Colors for variety */
+        .menu-item:nth-child(1) {
+            border-bottom: 6px solid #FF6B6B;
+        }
+
+        .menu-item:nth-child(2) {
+            border-bottom: 6px solid #4ECDC4;
+        }
+
+        .menu-item:nth-child(3) {
+            border-bottom: 6px solid #45B7D1;
+        }
+
+        .menu-item:nth-child(4) {
+            border-bottom: 6px solid #96CEB4;
+        }
+
+        /* Content Page Styles */
+        .page-content {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 15px;
+            min-height: 400px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            padding: 0.8rem 1.5rem;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: background 0.3s;
+            font-family: 'Jua', sans-serif;
+        }
+
+        .back-btn:hover {
+            background: #FF5252;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-15px) rotate(2deg);
+            }
+
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(5px);
+            margin-top: auto;
+            font-size: 0.9rem;
+            color: #666;
+        }
+    </style>
+
+    <!-- favicon could be added here -->
 </head>
+
 <body>
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <img src="https://cdn-icons-png.flaticon.com/512/4712/4712035.png" alt="Mascot" class="mascot">
+            <div class="hero-text">
+                <h1>즐거운 학교 생활</h1>
+                <p class="subtitle">오늘도 신나게 배워볼까요?</p>
+            </div>
+        </section>
 
-<p><h1>최운영 여러분을 환영합니다!!</h1></p>
+        <!-- Menu Grid -->
+        <nav class="menu-grid">
+            <!-- 1. Hanja Memory -->
+            <a href="hanja_memory.html" class="menu-item">
+                <div class="menu-icon">🎴</div>
+                <div class="menu-title">한자 기억력 게임</div>
+            </a>
 
+            <!-- 2. School Habit -->
+            <a href="school_habit_game.html" class="menu-item">
+                <div class="menu-icon">🏫</div>
+                <div class="menu-title">학교 생활 습관</div>
+            </a>
 
-<p>"학교도서관"이라 함은 고등학교 이하의 각급 학교(초등교육기관, 중등교육기관)에서 교사와 학생, 직원에게 도서관서비스를 제공하는 것을 주된 목적으로 하는 도서관을 말한다(도서관법 제2조 제6호).
+            <!-- 3. Typing Game -->
+            <a href="typing_game.html" class="menu-item">
+                <div class="menu-icon">⌨️</div>
+                <div class="menu-title">타자 연습</div>
+            </a>
 
-말 그대로<a href="https://www.daum.net/">다음 학교도서관</a> 학교도서관으로 대학을 제외한 하위 교육기관에 속한 도서관들을 가리킨다. 학교 소속인 만큼 학생들이 주 이용자이므로 청소년이나 어린이를 위한 도서를 중점적으로 수집한다. 이외에도 그 학교와 관련된 자료[1]나 교직원들을 위한 자료를 따로 수집하기도 한다. 도서실로도 많이 불린다.</p>
-<p><img src="https://i.namu.wiki/i/zITc7ZSyAL2AeEXnV7djP2_tMLYzjBJEgKUnVyCUlI-233O66oHPsvOOnNyMjIEKks5-E2U8uqVSxdciItPPGpPZkJWEzdCLYPIOc8FKwF3HIETQPeLqZjiT4OucB_V38X5BRbcgc0VjfjbDxPbAMg.webp" alt="대체문자열"></p>
+            <!-- 4. Zoo Friend -->
+            <a href="zoo_friend.html" class="menu-item">
+                <div class="menu-icon">🦁</div>
+                <div class="menu-title">동물 친구 찾기</div>
+            </a>
+        </nav>
+    </div>
 
-<p><a href="http://www.tcpschool.com/">초등교육기관</a>, 중등교육기관에는 학교도서관을 설치하여야 하며(같은 법 제37조), 학교도서관은 초·중등교육법과 사립학교법 및 그 밖의 법률의 규정에 따른 해당학교의 감독청의 지도·감독을 받는다(같은 법 제39조).</p>
-
-<p>학교도서관은 학생 및 교원 등의 교수, 학습활동을 지원하기 위하여 다음 각 호의 업무를 수행한다(같은 법 제38조).</p>
-<p>학교교육에 필요한 도서관자료의 수집·정리·보존 및 이용서비스 제공</p>
-<p>학교소장 교육 자료의 통합관리 및 이용 제공</p>
-<p>시청각자료 및 멀티미디어 자료의 개발·제작 및 이용 제공</p>
-<p>정보관리시스템과 통신망을 이용한 정보공유체제의 구축 및 이용 제공</p>
-<p>도서관 이용의 지도 및 독서교육, 협동수업 등을 통한 정보 활용의 교육</p>
-<p>그 밖에 학교도서관으로서 해야 할 기능수행에 필요한 업무</p>
-<p><table style="width:100%">
-
-    <tr style="background-color:lightgrey">
-
-        <th>국어</th>
-
-        <th>수학</th>      
-
-    </tr>
-
-    <tr>
-
-        <td>문법</td>
-
-        <td>통계</td>
-
-    </tr>
-    <tr>
-
-        <td>문학</td>
-
-        <td>함수</td>
-
-    </tr>
-
-</table></p>
-<p>즉, 학생들을 위한 다양한 도서의 배치와 더불어 교직원들의 수업 및 과제, 아이디어 제공에 필요한 수많은 교과자료의 제공을 중요시한다.
-
-관련 법률로 학교도서관진흥법이 있다.</p>
-2. 상세[편집]
-학교도서관에 대하여 「도서관법」에서는 '고등학교 이하의 각급 학교에서 교사와 학생, 직원에게 도서관서비스를 제공하는 것을 주된 목적을 하는 도서관'으로 정의하고 있으며, 좀 더 정확하게 작성하자면 '「초·중등교육법」 제2조[2]] 각 호에 따른 학교에서 교원과 학생 및 직원에게 도서관서비스를 제공하는 것을 주된 목적으로 하는 도서관'이라고 정의하고 있다.
-
-「학교도서관진흥법」에서는 '학교에서 학생과 교원의 학습·교수활동을 지원함을 주된 목적으로 하는 도서관이나 도서실'로 정의한다. 또한, 미국도서관협회 (ALA)의 문헌정보학 용어사전에서는 '모든 형태의 자료를 포괄하는 장서, 설비, 그리고 전문직원에 의한 서비스가 교직원과 학생에게 제공되는 초·중등학교 안의 특정 공간이나 시스템'으로 설명한다.
-
-이러한 다양한 정의를 바탕으로 학교도서관의 본질적 성격을 분석할 수 있다.
-교육기관 내 설치: 학교도서관은 초·중등 과정의 교육을 진행하는 모든 형태의 학교, 즉 교육기관 내에 설치되는 도서관이다.
-교수학습 지원: 학교도서관의 가장 큰 역할은 교수와 학습 활동에 직간접적으로 참여하는 것이다. 이를 위해 학교의 모든 구성원, 즉 학생, 교사, 그리고 직원들을 주요 서비스 대상으로 본다.
-전문 자원 및 서비스 제공: 학교도서관은 전문 인력, 자료, 설비 등의 핵심 자원을 충실하게 보유하고 있어 이를 활용해 교육 및 학습에 필요한 다양한 기능을 수행한다.
-
-
+    <footer>
+        <p>© 2024 즐거운 학교 생활 - 행복한 배움터</p>
+    </footer>
 </body>
 
- 
-
 </html>
-
-
-
-
-
